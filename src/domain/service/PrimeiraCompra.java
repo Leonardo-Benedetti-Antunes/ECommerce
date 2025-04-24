@@ -6,6 +6,6 @@ public class PrimeiraCompra implements Desconto {
 
     @Override
     public double aplicarDesconto(double total) {
-        return total * 0.50;
+        return total - (total * 0.50);
     }
 }
