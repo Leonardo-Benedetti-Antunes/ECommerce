@@ -1,11 +1,16 @@
 package domain.service;
 
-import domain.interfaces.DescontoCupom;
+import domain.interfaces.DescontoRepository;
 
-public class Cupom implements DescontoCupom {
+public class Cupom implements DescontoRepository {
+    private double desconto;
+
+    public Cupom(double desconto){
+        this.desconto = desconto;
+    }
 
     @Override
-    public double aplicarDesconto(double total, double cupom) {
-        return total - (total * (cupom / 100));
+    public double aplicarDesconto(double total) {
+        return total - (total * (desconto / 100.0));
     }
 }

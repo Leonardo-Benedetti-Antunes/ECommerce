@@ -1,5 +1,5 @@
 package domain.interfaces;
 
-public interface Desconto {
+public interface DescontoRepository {
     public double aplicarDesconto (double total);
 }

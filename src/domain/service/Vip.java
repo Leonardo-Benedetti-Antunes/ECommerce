@@ -1,11 +1,12 @@
 package domain.service;
 
-import domain.interfaces.Desconto;
+import domain.interfaces.DescontoRepository;
 
-public class Vip implements Desconto {
+public class Vip implements DescontoRepository {
 
     @Override
     public double aplicarDesconto(double total) {
-        return total - (total * 0.95);
+        double valorfinal = total - (total * (30.0 / 100.0));
+        return valorfinal;
     }
 }
