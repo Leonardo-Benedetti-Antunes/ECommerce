@@ -1,5 +1,8 @@
 package domain.entities;
 
-public class Carrinho {
+import java.util.List;
 
+public class Carrinho {
+    List<Produto> produtos;
+    float valorTotal;
 }
