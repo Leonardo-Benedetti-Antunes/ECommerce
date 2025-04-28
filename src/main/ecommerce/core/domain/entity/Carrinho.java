@@ -1,4 +1,4 @@
-package domain.entities;
+package main.ecommerce.core.domain.entity;
 
 import java.util.List;
 

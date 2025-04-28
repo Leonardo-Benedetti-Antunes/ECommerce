@@ -1,6 +1,6 @@
-package domain.entities;
+package main.ecommerce.core.domain.entity;
 
-import domain.enums.Unidades;
+import main.ecommerce.core.domain.enums.Unidades;
 
 public class Produto {
     String nome;

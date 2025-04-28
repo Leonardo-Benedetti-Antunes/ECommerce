@@ -1,6 +1,6 @@
-package domain.service;
+package main.ecommerce.core.domain.service;
 
-import domain.interfaces.DescontoRepository;
+import main.ecommerce.core.domain.interfaces.DescontoRepository;
 
 public class DescontoService {
     DescontoRepository descontoRepository;
