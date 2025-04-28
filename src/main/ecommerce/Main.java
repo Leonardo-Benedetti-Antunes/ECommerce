@@ -1,20 +1,24 @@
 package main.ecommerce;
 
-import main.ecommerce.core.domain.service.Cupom;
-import main.ecommerce.core.domain.service.DescontoService;
-import main.ecommerce.core.domain.service.PrimeiraCompra;
-import main.ecommerce.core.domain.service.Vip;
+import main.ecommerce.core.domain.contract.ProductRepository;
+import main.ecommerce.infra.memory.MemoryProductRepository;
+import main.ecommerce.core.domain.usecase.CadastrarProdutoUseCaseImpl;
+import main.ecommerce.core.domain.usecase.ListarProdutosUseCaseImpl;
+import main.ecommerce.core.domain.usecase.RemoverProdutoUseCaseImpl;
+import main.ecommerce.global.cli.CLIController;
 
 public class Main {
     public static void main(String[] args) {
+        // Inicializar repositório e usecases
+        ProductRepository repository = new MemoryProductRepository();
+        CadastrarProdutoUseCaseImpl cadastrarProdutoUseCase = new CadastrarProdutoUseCaseImpl(repository);
+        ListarProdutosUseCaseImpl listarProdutosUseCase = new ListarProdutosUseCaseImpl(repository);
+        RemoverProdutoUseCaseImpl removerProdutoUseCase = new RemoverProdutoUseCaseImpl(repository);
 
-        Vip vip = new Vip();
-        PrimeiraCompra primeiraCompra = new PrimeiraCompra();
-        Cupom cupom = new Cupom(50);
+        // Criar o controller CLI
+        CLIController controller = new CLIController(cadastrarProdutoUseCase, listarProdutosUseCase, removerProdutoUseCase);
 
-        DescontoService ds = new DescontoService(vip);
-
-        System.out.println(ds.aplicarDesconto(100));
-
+        // Exibir o menu
+        controller.exibirMenu();
     }
 }
