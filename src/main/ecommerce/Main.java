@@ -1,7 +1,9 @@
-import domain.service.Cupom;
-import domain.service.DescontoService;
-import domain.service.PrimeiraCompra;
-import domain.service.Vip;
+package main.ecommerce;
+
+import main.ecommerce.core.domain.service.Cupom;
+import main.ecommerce.core.domain.service.DescontoService;
+import main.ecommerce.core.domain.service.PrimeiraCompra;
+import main.ecommerce.core.domain.service.Vip;
 
 public class Main {
     public static void main(String[] args) {

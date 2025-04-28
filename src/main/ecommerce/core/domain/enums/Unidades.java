@@ -1,4 +1,4 @@
-package domain.enums;
+package main.ecommerce.core.domain.enums;
 
 public enum Unidades {
     UNIDADE,
