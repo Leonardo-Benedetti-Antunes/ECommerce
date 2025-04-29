@@ -3,14 +3,14 @@ package main.ecommerce.core.domain.service;
 import main.ecommerce.core.domain.contract.desconto.DescontoRepository;
 
 public class Cupom implements DescontoRepository {
-    private double desconto;
+    private float desconto;
 
-    public Cupom(double desconto){
+    public Cupom(float desconto){
         this.desconto = desconto;
     }
 
     @Override
-    public double aplicarDesconto(double total) {
-        return total - (total * (desconto / 100.0));
+    public float aplicarDesconto(float total) {
+        return total - (total * (desconto / 100));
     }
 }

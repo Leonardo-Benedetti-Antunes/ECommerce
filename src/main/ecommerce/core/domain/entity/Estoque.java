@@ -1,5 +1,6 @@
 package main.ecommerce.core.domain.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Estoque {
@@ -9,7 +10,15 @@ public class Estoque {
         return produtos;
     }
 
+    public Estoque() {
+        this.produtos = new ArrayList<>();
+    }
+
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    public void addProdutos(Produto produto) {
+        this.produtos.add(produto);
     }
 }

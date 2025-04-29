@@ -1,5 +1,7 @@
 package main.ecommerce.core.domain.contract.contas;
 
+import main.ecommerce.core.domain.entity.Cliente;
+
 public interface CriarContaUseCase {
-    void criarConta(String nome);
+    Cliente criarConta(String nome, Boolean vip);
 }

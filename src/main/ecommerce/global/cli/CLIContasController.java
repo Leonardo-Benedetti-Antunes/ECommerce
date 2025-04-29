@@ -1,34 +1,26 @@
 package main.ecommerce.global.cli;
 
-import main.ecommerce.core.domain.contract.contas.AcessarContaUseCase;
 import main.ecommerce.core.domain.contract.contas.CriarContaUseCase;
-import main.ecommerce.core.domain.contract.contas.ExcluirContaUseCase;
+import main.ecommerce.core.domain.entity.Cliente;
 
 import java.util.Scanner;
 
 public class CLIContasController {
-
+    private Cliente cliente;
     private final Scanner scanner;
-    private final AcessarContaUseCase acessarContaUseCase;
     private final CriarContaUseCase criarContaUseCase;
-    private final ExcluirContaUseCase excluirContaUseCase;
 
-    public CLIContasController(AcessarContaUseCase acessarContaUseCase,
-                               CriarContaUseCase criarContaUseCase,
-                               ExcluirContaUseCase excluirContaUseCase) {
+    public CLIContasController(CriarContaUseCase criarContaUseCase, Cliente cliente) {
         this.scanner = new Scanner(System.in);
-        this.acessarContaUseCase = acessarContaUseCase;
         this.criarContaUseCase = criarContaUseCase;
-        this.excluirContaUseCase = excluirContaUseCase;
+        this.cliente = cliente;
     }
 
-    public void exibirMenuContas() {
+    public Cliente exibirMenuContas() {
         while (true) {
             System.out.println("\n=== MENU ESTOQUE ===");
             System.out.println("1. Criar conta");
-            System.out.println("2. Acessar conta");
-            System.out.println("3. Excluir conta");
-            System.out.println("4. Sair");
+            System.out.println("2. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar buffer do scanner
@@ -38,13 +30,7 @@ public class CLIContasController {
                     criarConta();
                     break;
                 case 2:
-                    acessarConta();
-                    break;
-                case 3:
-                    excluirConta();
-                    break;
-                case 4:
-                    return;
+                    return cliente;
                 default:
                     System.out.println("Opção inválida!");
             }
@@ -52,14 +38,12 @@ public class CLIContasController {
     }
 
     void criarConta(){
+        System.out.print("Nome do Conta: ");
+        String nome = scanner.nextLine();
 
-    }
+        System.out.print("Conta VIP? ");
+        boolean vip = scanner.nextBoolean();
 
-    void acessarConta(){
-
-    }
-
-    void excluirConta(){
-
+        cliente = criarContaUseCase.criarConta(nome, vip);
     }
 }

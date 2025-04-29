@@ -1,9 +1,10 @@
 package main.ecommerce.core.domain.contract.estoque;
 
-import main.ecommerce.core.dto.ProdutoDTO;
+import main.ecommerce.core.domain.entity.Estoque;
+import main.ecommerce.core.domain.entity.Produto;
 
 import java.util.List;
 
 public interface ListaProdutosUseCase {
-    List<ProdutoDTO> lista();
+    List<Produto> lista(Estoque estoque);
 }

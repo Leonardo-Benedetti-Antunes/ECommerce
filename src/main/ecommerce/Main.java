@@ -4,18 +4,16 @@ import main.ecommerce.core.domain.contract.carrinho.AdicionarAoCarrinhoUseCase;
 import main.ecommerce.core.domain.contract.carrinho.CarrinhoRepository;
 import main.ecommerce.core.domain.contract.carrinho.FinalizarCompraUseCase;
 import main.ecommerce.core.domain.contract.carrinho.RemoverDoCarrinhoUseCase;
-import main.ecommerce.core.domain.contract.contas.AcessarContaUseCase;
 import main.ecommerce.core.domain.contract.contas.ContaRepository;
 import main.ecommerce.core.domain.contract.contas.CriarContaUseCase;
-import main.ecommerce.core.domain.contract.contas.ExcluirContaUseCase;
 import main.ecommerce.core.domain.contract.estoque.ProdutoRepository;
+import main.ecommerce.core.domain.entity.Carrinho;
+import main.ecommerce.core.domain.entity.Cliente;
 import main.ecommerce.core.domain.entity.Estoque;
 import main.ecommerce.core.domain.usecase.carrinho.AdicionarAoCarrinhoUseCaseImpl;
 import main.ecommerce.core.domain.usecase.carrinho.FinalizarCompraUseCaseImpl;
 import main.ecommerce.core.domain.usecase.carrinho.RemoverDoCarrinhoUseCaseImpl;
-import main.ecommerce.core.domain.usecase.contas.AcessarContaUseCaseImpl;
 import main.ecommerce.core.domain.usecase.contas.CriarContaUseCaseImpl;
-import main.ecommerce.core.domain.usecase.contas.ExcluitContaUseCaseImpl;
 import main.ecommerce.core.domain.usecase.estoque.CadastroProdutoUseCaseImpl;
 import main.ecommerce.core.domain.usecase.estoque.ListaProdutosUseCaseImpl;
 import main.ecommerce.core.domain.usecase.estoque.RemoveProdutoUseCaseImpl;
@@ -27,10 +25,16 @@ import main.ecommerce.infra.memory.MemoryCarrinhoRepository;
 import main.ecommerce.infra.memory.MemoryContasRepository;
 import main.ecommerce.infra.memory.MemoryProdutoRepository;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
         Estoque estoque = new Estoque();
+
+        Carrinho carrinho = new Carrinho();
+
+        Cliente cliente = new Cliente("", new ArrayList<>());
 
         ProdutoRepository produtoRepository = new MemoryProdutoRepository();
 
@@ -46,15 +50,13 @@ public class Main {
         FinalizarCompraUseCase finalizarCompraUseCase = new FinalizarCompraUseCaseImpl(carrinhoRepository);
         RemoverDoCarrinhoUseCase removerDoCarrinhoUseCase = new RemoverDoCarrinhoUseCaseImpl(carrinhoRepository);
 
-        AcessarContaUseCase acessarContaUseCase = new AcessarContaUseCaseImpl(contasRepository);
         CriarContaUseCase criarContaUseCase = new CriarContaUseCaseImpl(contasRepository);
-        ExcluirContaUseCase excluirContaUseCase = new ExcluitContaUseCaseImpl(contasRepository);
 
-        CLIEstoqueController cliEstoqueController = new CLIEstoqueController(cadastrarProdutoUseCase, listarProdutosUseCase, removerProdutoUseCase, estoque);
-        CLICarrinhoController cliCarrinhoController = new CLICarrinhoController(adicionarAoCarrinhoUseCase, finalizarCompraUseCase, removerDoCarrinhoUseCase, estoque);
-        CLIContasController cliContasControlle = new CLIContasController(acessarContaUseCase, criarContaUseCase, excluirContaUseCase);
+        CLIEstoqueController cliEstoqueController = new CLIEstoqueController(estoque, cadastrarProdutoUseCase, listarProdutosUseCase, removerProdutoUseCase);
+        CLICarrinhoController cliCarrinhoController = new CLICarrinhoController(carrinho, estoque, adicionarAoCarrinhoUseCase, finalizarCompraUseCase, removerDoCarrinhoUseCase, cliente);
+        CLIContasController cliContasControlle = new CLIContasController(criarContaUseCase, cliente);
 
-        CLIController controller = new CLIController(cliEstoqueController, cliCarrinhoController, cliContasControlle);
+        CLIController controller = new CLIController(cliEstoqueController, cliCarrinhoController, cliContasControlle, cliente);
 
         controller.exibirMenu();
     }
