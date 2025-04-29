@@ -1,6 +1,6 @@
 package main.ecommerce.core.domain.service;
 
-import main.ecommerce.core.domain.interfaces.DescontoRepository;
+import main.ecommerce.core.domain.contract.desconto.DescontoRepository;
 
 public class Cupom implements DescontoRepository {
     private double desconto;

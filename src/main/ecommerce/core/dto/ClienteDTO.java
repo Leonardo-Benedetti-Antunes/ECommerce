@@ -1,14 +1,14 @@
-package main.ecommerce.core.domain.entity;
+package main.ecommerce.core.dto;
 
 import main.ecommerce.core.domain.contract.desconto.DescontoRepository;
 
 import java.util.List;
 
-public class Cliente {
+public class ClienteDTO {
     String nome;
     List<DescontoRepository> descontos;
 
-    public Cliente(String nome, List<DescontoRepository> descontos) {
+    public ClienteDTO(String nome, List<DescontoRepository> descontos) {
         this.nome = nome;
         this.descontos = descontos;
     }
@@ -17,16 +17,8 @@ public class Cliente {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public List<DescontoRepository> getDescontos() {
         return descontos;
-    }
-
-    public void setDescontos(List<DescontoRepository> descontos) {
-        this.descontos = descontos;
     }
 
     @Override

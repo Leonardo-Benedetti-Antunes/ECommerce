@@ -1,4 +1,4 @@
-package main.ecommerce.core.domain.usecase;
+package main.ecommerce.core.domain.contract.estoque;
 
 import main.ecommerce.core.dto.ProdutoDTO;
 
