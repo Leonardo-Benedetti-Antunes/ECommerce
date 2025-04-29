@@ -1,4 +1,4 @@
-package main.ecommerce.core.domain.contract;
+package main.ecommerce.core.domain.contract.estoque;
 
 import main.ecommerce.core.domain.entity.Produto;
 import java.util.List;

@@ -1,6 +1,6 @@
 package main.ecommerce.infra.memory;
 
-import main.ecommerce.core.domain.contract.ProdutoRepository;
+import main.ecommerce.core.domain.contract.estoque.ProdutoRepository;
 import main.ecommerce.core.domain.entity.Produto;
 
 import java.util.List;
