@@ -5,8 +5,8 @@ import main.ecommerce.core.domain.contract.desconto.DescontoRepository;
 public class Vip implements DescontoRepository {
 
     @Override
-    public double aplicarDesconto(double total) {
-        double valorfinal = total - (total * (30.0 / 100.0));
+    public float aplicarDesconto(float total) {
+        float valorfinal = total - (total * (30 / 100));
         return valorfinal;
     }
 }

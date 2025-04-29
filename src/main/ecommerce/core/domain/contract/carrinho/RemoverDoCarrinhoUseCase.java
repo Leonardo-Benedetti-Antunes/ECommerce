@@ -1,7 +1,7 @@
 package main.ecommerce.core.domain.contract.carrinho;
 
-import main.ecommerce.core.domain.entity.Produto;
+import main.ecommerce.core.domain.entity.Carrinho;
 
 public interface RemoverDoCarrinhoUseCase {
-    void remover(Produto produto);
+    void remover(String nome, Carrinho carrinho);
 }

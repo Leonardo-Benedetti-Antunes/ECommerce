@@ -6,26 +6,28 @@ import main.ecommerce.core.domain.contract.estoque.RemoveProdutoUseCase;
 import main.ecommerce.core.domain.entity.Estoque;
 import main.ecommerce.core.domain.enums.Unidades;
 import main.ecommerce.core.dto.ProdutoDTO;
+import main.ecommerce.core.dto.ProdutoMapper;
 
 import java.util.Scanner;
 
 public class CLIEstoqueController {
+    private final Estoque estoque;
     private final Scanner scanner;
     private final CadastroProdutoUseCase cadastroProdutoUseCase;
     private final ListaProdutosUseCase listaProdutosUseCase;
     private final RemoveProdutoUseCase removeProdutoUseCase;
 
-    public CLIEstoqueController(CadastroProdutoUseCase cadastroProdutoUseCase,
+    public CLIEstoqueController(Estoque estoque, CadastroProdutoUseCase cadastroProdutoUseCase,
                                 ListaProdutosUseCase listaProdutosUseCase,
-                                RemoveProdutoUseCase removeProdutoUseCase,
-                                Estoque estoque) {
+                                RemoveProdutoUseCase removeProdutoUseCase) {
         this.scanner = new Scanner(System.in);
+        this.estoque = estoque;
         this.cadastroProdutoUseCase = cadastroProdutoUseCase;
         this.listaProdutosUseCase = listaProdutosUseCase;
         this.removeProdutoUseCase = removeProdutoUseCase;
     }
 
-    public void exibirEstoqueProduto() {
+    public void exibirMenuEstoque() {
         while (true) {
             System.out.println("\n=== MENU ESTOQUE ===");
             System.out.println("1. Cadastrar Produto");
@@ -93,12 +95,12 @@ public class CLIEstoqueController {
         float valor = scanner.nextFloat();
 
         ProdutoDTO produtoDTO = new ProdutoDTO(nome, descricao, valor, unidade);
-        cadastroProdutoUseCase.cadastro(produtoDTO);
+        cadastroProdutoUseCase.cadastro(produtoDTO, estoque);
         System.out.println("Produto cadastrado com sucesso!");
     }
 
     private void listarProdutos() {
-        var produtos = listaProdutosUseCase.lista();
+        var produtos = listaProdutosUseCase.lista(estoque);
         if (produtos.isEmpty()) {
             System.out.println("Nenhum produto encontrado.");
         } else {
@@ -115,7 +117,8 @@ public class CLIEstoqueController {
     private void removerProduto() {
         System.out.print("Nome do produto para remover: ");
         String nome = scanner.nextLine();
-        removeProdutoUseCase.remove(nome);
+        removeProdutoUseCase.remove(nome, estoque);
         System.out.println("Produto removido com sucesso!");
     }
+
 }

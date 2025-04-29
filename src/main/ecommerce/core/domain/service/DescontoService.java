@@ -9,7 +9,7 @@ public class DescontoService {
         this.descontoRepository = descontoRepository;
     }
 
-    public double aplicarDesconto(double total){
+    public double aplicarDesconto(float total){
         return this.descontoRepository.aplicarDesconto(total);
     }
 }
